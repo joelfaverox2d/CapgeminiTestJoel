@@ -1,0 +1,22 @@
+# Perfil "test": H2 en memoria en lugar de MySQL, sin Flyway.
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: false
+  sql:
+    init:
+      mode: always
+  flyway:
+    enabled: false
+
+external:
+  service:
+    url: http://localhost:1080

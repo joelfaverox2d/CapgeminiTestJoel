@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Capgemini Test
+  description: test capgemini api
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Users
+    description: Test capgemini users
+
+paths:
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Crea un usuario en la sala 1
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdResponse'
+        '409':
+          description: Error de validación (email, userName, rol, dni...)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: El servicio externo de validación de DNI no está disponible
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Obtiene un usuario de la sala 1 por su id
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '404':
+          description: Usuario no encontrado en la sala 1
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/{id}/room:
+    patch:
+      tags:
+        - Users
+      summary: Cambia a un usuario de sala
+      operationId: changeUserRoom
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeRoomRequest'
+      responses:
+        '200':
+          description: Usuario movido a la nueva sala
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '404':
+          description: El usuario o la sala no existen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Falta el roomId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    CreateUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pablo
+        email:
+          type: string
+          example: email@email.com
+        phone:
+          type: string
+          example: "677998899"
+        rol:
+          type: string
+          description: admin o superadmin
+          example: admin
+        dni:
+          type: string
+          example: 23454234W
+
+    IdResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        rol:
+          type: string
+        dni:
+          type: string
+        roomId:
+          type: integer
+          format: int64
+
+    ChangeRoomRequest:
+      type: object
+      properties:
+        roomId:
+          type: integer
+          format: int64
+          example: 2
+
+    Room:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          example: 409
+        message:
+          type: string
+          example: error validation email

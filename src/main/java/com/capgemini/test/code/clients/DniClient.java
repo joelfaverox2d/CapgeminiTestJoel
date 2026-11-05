@@ -22,7 +22,7 @@ public interface DniClient {
  
     @Bean(name = "customLogger")
     public Logger.Level feignLoggerLevel() {
-      return Logger.Level.FULL; // Puedes ajustar el nivel de los logs según tu necesidad
+      return Logger.Level.FULL;
     }
   }
  
