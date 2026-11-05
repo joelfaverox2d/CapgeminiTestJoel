@@ -1,0 +1,191 @@
+{
+  "info": {
+    "_postman_id": "fbe4a81d-20cf-433f-87f5-f130118e998f",
+    "name": "capgemini",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "22277747"
+  },
+  "item": [
+    {
+      "name": "valid dni",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"dni\": \"222222\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:1080/check-dni",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1080",
+          "path": [
+            "check-dni"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "invalid dni",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"dni\": \"99999999w\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:1080/check-dni",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1080",
+          "path": [
+            "check-dni"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"message\": \"message\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:1080/email",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1080",
+          "path": [
+            "email"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "sms",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"dni\": \"222222\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:1080/check-dni",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1080",
+          "path": [
+            "check-dni"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "createUser",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"j\",\r\n  \"email\": \"j\",\r\n  \"phone\": \"j\",\r\n  \"rol\": \"j\",\r\n  \"dni\":\"j\" \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/users/createUser",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "createUser"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getUser",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/users/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ChangeRoom",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
